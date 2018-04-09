@@ -1,15 +1,21 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-// log incoming requests..
+// Log incoming requests..
 app.use(morgan('dev'));
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+mongoose.connect(`mongodb://zetos:${process.env.DB_PWD}@zetos-shard-00-00-bwnsn.mongodb.net:27017,zetos-shard-00-01-bwnsn.mongodb.net:27017,zetos-shard-00-02-bwnsn.mongodb.net:27017/test?ssl=true&replicaSet=Zetos-shard-0&authSource=admin`)
 
 //Handling CORS
 app.use((req, res, next) => {
