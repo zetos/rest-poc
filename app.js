@@ -21,7 +21,7 @@ mongoose.connect(`mongodb://zetos:${process.env.DB_PWD}@zetos-shard-00-00-bwnsn.
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers',
-    'Oringin, X-Requested-With, Content-Type, Accept, Authorization');
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if (req.method === 'OPTIONS') {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
         return res.status(200).json({});
